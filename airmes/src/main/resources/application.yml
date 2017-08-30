@@ -1,0 +1,10 @@
+logging:
+    file: /var/log/airmes/airmes.log
+    level:
+        com.maja.airmes: DEBUG
+
+spring:
+    main:
+        banner-mode: log
+    application:
+        name: Airmes
