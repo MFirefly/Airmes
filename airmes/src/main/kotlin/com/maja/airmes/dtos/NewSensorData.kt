@@ -1,5 +1,6 @@
 package com.maja.airmes.dtos
 
+import com.maja.airmes.domain.AirSensorEntity
 import java.sql.Timestamp
 
 /**
@@ -10,6 +11,18 @@ import java.sql.Timestamp
  */
 class NewSensorData(
         private val time: Timestamp,
-        private val humidity: Int?,
-        private val temperature: Int?
-)
+        private val humidity: Int,
+        private val temperature: Int
+) {
+
+    override fun toString(): String = "NewSensorData=[time=${this.time}, humidity=${this.humidity}, " +
+            "temperature=${this.temperature}]"
+
+    companion object {
+        fun fromDto(dto: NewSensorData) = AirSensorEntity(
+                timestamp = dto.time,
+                temperature = dto.temperature,
+                humidity = dto.humidity
+        )
+    }
+}

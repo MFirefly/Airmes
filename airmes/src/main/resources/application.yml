@@ -1,7 +1,8 @@
-logging:
-    file: /var/log/airmes/airmes.log
-    level:
-        com.maja.airmes: DEBUG
+# Uncomment the following lines when deployed on RPi
+#logging:
+#    file: /home/maja/log/airmes.log
+#    level:
+#        com.maja.airmes: INFO
 
 spring:
     main:

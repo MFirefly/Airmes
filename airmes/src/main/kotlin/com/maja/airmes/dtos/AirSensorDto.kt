@@ -9,8 +9,8 @@ import java.sql.Timestamp
  * @created 30.08.17.
  */
 class AirSensorDto(
-        private val id: Long,
-        private val time: Timestamp,
-        private val humidity: Int?,
-        private val temperature: Int?
+        val id: Long,
+        val time: Timestamp,
+        val humidity: Int?,
+        val temperature: Int?
 )

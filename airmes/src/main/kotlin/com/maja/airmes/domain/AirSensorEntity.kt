@@ -2,10 +2,7 @@ package com.maja.airmes.domain
 
 import com.maja.airmes.dtos.AirSensorDto
 import java.sql.Timestamp
-import javax.persistence.GeneratedValue
-import javax.persistence.GenerationType
-import javax.persistence.Id
-import javax.persistence.Table
+import javax.persistence.*
 
 /**
  * Entity for air sensor data in database
@@ -13,6 +10,7 @@ import javax.persistence.Table
  * @author Maja Filakovic
  * @created 30.08.17.
  */
+@Entity
 @Table(name = "air_sensor_data")
 class AirSensorEntity(
         @Id
@@ -21,10 +19,13 @@ class AirSensorEntity(
 
         private val timestamp: Timestamp,
 
-        private val temperature: Int?,
+        private val temperature: Int,
 
-        private val humidity: Int?
+        private val humidity: Int
 ) {
+    @Suppress("unused")
+    private constructor() : this(timestamp = Timestamp(0), temperature = 0, humidity = 0)
+
     fun toDto(): AirSensorDto = AirSensorDto(
             id = this.id!!,
             time = this.timestamp,
