@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory
 import org.springframework.context.annotation.DependsOn
 import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Service
+import java.sql.Timestamp
 
 /**
  * Service for receiving data from air sensor AM2302
@@ -27,7 +28,7 @@ class AirSensorService(
     /**
      * Retrieves data from sensor and stores it into database every 1 minute
      */
-    @Scheduled(fixedRate = 60000)
+    @Scheduled(fixedRate = GET_NEW_DATA_INTERVAL)
     fun retrieveSensorData() {
         // Replace random data with this, when sensor is connected and tested
         //val sensorData = sensorConfig.readSensor()
@@ -45,4 +46,27 @@ class AirSensorService(
         return airSensorRepo.findAll().map { it.toDto() }
     }
 
+    /**
+     * Purge sensor data from database, older then 3 days
+     */
+    @Scheduled(fixedDelay = PURGE_DATA_INTERVAL)
+    fun purgeOldData() {
+        val time = Timestamp(System.currentTimeMillis() - (KEEP_DATA_INTERVAL * 1000))
+        LOG.info("Purging old data...")
+        airSensorRepo.purgeData(time)
+    }
+
+    /**
+     * Companion object that contains relevant constants
+     */
+    companion object {
+        // In seconds. Current: 259200 s = 3 days
+        const val KEEP_DATA_INTERVAL = 259200L
+
+        // In miliseconds. Current 86400000 ms = 1 day
+        const val PURGE_DATA_INTERVAL = 86400000L
+
+        // In miliseconds. Current 60000 ms = 10 minutes
+        const val GET_NEW_DATA_INTERVAL = 60000L
+    }
 }
