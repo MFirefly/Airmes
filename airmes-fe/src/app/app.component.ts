@@ -3,6 +3,8 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app',
   template: `
+  <br><br>
+  <h1 class="text-center">Airmes</h1>
   <div class="container">
       <charts-section class="col-md-12"></charts-section>
   </div>

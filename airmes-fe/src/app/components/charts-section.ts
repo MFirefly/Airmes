@@ -5,19 +5,25 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'charts-section',
   template: `
-    <section [attr.id]="name">
+    <section style="padding-top: 0px;" [attr.id]="name">
       <div class="row">
-        <chart-section [ts]="desc.lineChart.ts"
-                       [html]="desc.lineChart.html"
+        <chart-section [ts]="desc.temperatureChart.ts"
+                       [html]="desc.temperatureChart.html"
                       
-                       [id]="desc.lineChart.id"
-                       [heading]="desc.lineChart.heading">
-          <line-chart></line-chart>
+                       [id]="desc.temperatureChart.id"
+                       [heading]="desc.temperatureChart.heading">
+          <temperature-chart></temperature-chart>
         </chart-section>
       </div>
-
-      <br>
-
+      <div class="row">
+      <chart-section [ts]="desc.humidityChart.ts"
+                     [html]="desc.humidityChart.html"
+                    
+                     [id]="desc.humidityChart.id"
+                     [heading]="desc.humidityChart.heading">
+        <humidity-chart></humidity-chart>
+      </chart-section>
+    </div>
     </section>
   `
 })
@@ -25,11 +31,17 @@ import { Component } from '@angular/core';
 export class ChartsSectionComponent {
   public name: string = 'Charts';
   public desc: any = {
-    lineChart: {
-      heading: 'Line Chart',
-      id: 'lineChart',
-      ts: require('!!raw-loader?lang=typescript!./line-chart.ts'),
-      html: require('!!raw-loader?lang=markup!./line-chart.html')
+    temperatureChart: {
+      heading: 'Temperature Chart',
+      id: 'temperatureChart',
+      ts: require('!!raw-loader?lang=typescript!./temperature-chart.ts'),
+      html: require('!!raw-loader?lang=markup!./temperature-chart.html')
+    },
+    humidityChart: {
+      heading: 'Humidity Chart',
+      id: 'humidityChart',
+      ts: require('!!raw-loader?lang=typescript!./humidity-chart.ts'),
+      html: require('!!raw-loader?lang=markup!./humidity-chart.html')
     }
   };
 }

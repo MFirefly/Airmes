@@ -3,7 +3,8 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { ChartsSectionComponent } from './components/charts-section';
-import { LineChartDemoComponent } from './components/line-chart';
+import { TemperatureChartComponent } from './components/temperature-chart';
+import { HumidityChartComponent } from './components/humidity-chart';
 import { ChartSectionComponent } from './components/chart-section.component';
 
 import { TabsModule, CollapseModule, BsDropdownModule } from 'ngx-bootstrap';
@@ -17,7 +18,8 @@ import { AppComponent } from './app.component';
     ChartSectionComponent,
     AppComponent,
     ChartsSectionComponent,
-    LineChartDemoComponent
+    TemperatureChartComponent,
+    HumidityChartComponent
   ],
   imports: [
     BrowserModule,
