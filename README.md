@@ -1,3 +1,5 @@
+TODO: Update this!!
+
 ## Synopsis
 
 Spring boot application for measuring air quality with Raspberry Pi and AM2320B SHT21 Sensor.

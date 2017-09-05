@@ -15,12 +15,12 @@ export class HumidityChartComponent {
     };
     public humidChartColors: any[] = [
         {
-            backgroundColor: 'rgba(148,159,177,0.2)',
-            borderColor: 'rgba(148,159,177,1)',
-            pointBackgroundColor: 'rgba(148,159,177,1)',
+            backgroundColor: 'rgba(102, 102, 153, 0.2)',
+            borderColor: 'rgba(102, 102, 153, 1)',
+            pointBackgroundColor: 'rgba(102, 102, 153, 1)',
             pointBorderColor: '#fff',
-            pointHoverBackgroundColor: '#fff',
-            pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+            pointHoverBackgroundColor: 'rgba(102, 102, 153, 1)',
+            pointHoverBorderColor: '#fff'
         }
     ];
     public humidChartLegend: boolean = true;

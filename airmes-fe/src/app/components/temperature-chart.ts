@@ -14,12 +14,12 @@ export class TemperatureChartComponent {
   };
   public tempChartColors: any[] = [
     {
-      backgroundColor: 'rgba(77,83,96,0.2)',
-      borderColor: 'rgba(77,83,96,1)',
-      pointBackgroundColor: 'rgba(77,83,96,1)',
+      backgroundColor: 'rgba(102, 102, 153, 0.2)',
+      borderColor: 'rgba(102, 102, 153, 1)',
+      pointBackgroundColor: 'rgba(102, 102, 153, 1)',
       pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(77,83,96,1)'
+      pointHoverBackgroundColor: 'rgba(102, 102, 153, 1)',
+      pointHoverBorderColor: '#fff'
     }
   ];
   public tempChartLegend: boolean = true;

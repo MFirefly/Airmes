@@ -33,7 +33,6 @@ import { Component } from '@angular/core';
 })
 
 export class ChartsSectionComponent {
-  public name: string = 'Charts';
   public desc: any = {
     temperatureChart: {
       heading: 'Temperature Chart',
