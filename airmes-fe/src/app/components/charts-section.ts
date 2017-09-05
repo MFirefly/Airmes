@@ -5,8 +5,9 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'charts-section',
   template: `
-    <section style="padding-top: 0px;" [attr.id]="name">
-      <div class="row">
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="card mb-3">
         <chart-section [ts]="desc.temperatureChart.ts"
                        [html]="desc.temperatureChart.html"
                       
@@ -15,7 +16,9 @@ import { Component } from '@angular/core';
           <temperature-chart></temperature-chart>
         </chart-section>
       </div>
-      <div class="row">
+    </div>
+    <div class="col-lg-6">
+      <div class="card mb-3">
       <chart-section [ts]="desc.humidityChart.ts"
                      [html]="desc.humidityChart.html"
                     
@@ -23,8 +26,9 @@ import { Component } from '@angular/core';
                      [heading]="desc.humidityChart.heading">
         <humidity-chart></humidity-chart>
       </chart-section>
+      </div>
     </div>
-    </section>
+  </div>
   `
 })
 

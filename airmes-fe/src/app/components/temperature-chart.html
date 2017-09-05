@@ -1,7 +1,5 @@
-<div class="row">
-  <div class="col-md-6">
-    <div style="display: block;">
-    <canvas baseChart width="400" height="400"
+  <div class="card-body">
+    <canvas baseChart width="400" height="100"
                 [datasets]="tempChartData"
                 [labels]="tempChartLabels"
                 [options]="tempChartOptions"
@@ -10,7 +8,6 @@
                 [chartType]="tempChartType"
                 (chartHover)="chartHovered($event)"
                 (chartClick)="chartClicked($event)"></canvas>
-    </div>
   </div>
   <!--<div class="col-md-6" style="margin-bottom: 10px">
     <table class="table table-responsive table-condensed">
@@ -23,4 +20,3 @@
     </table>
     <button (click)="randomize()">CLICK</button>
   </div>-->
-</div>

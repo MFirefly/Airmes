@@ -3,10 +3,11 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app',
   template: `
-  <br><br>
-  <h1 class="text-center">Airmes</h1>
-  <div class="container">
-      <charts-section class="col-md-12"></charts-section>
+  <div class="container-wrapper">
+    <h1 class="text-center heading-custom" style="color: #fff;">Airmes</h1>
+      <div class="container-fluid">
+        <charts-section></charts-section>
+      </div>
   </div>
 
   <footer class="footer">
