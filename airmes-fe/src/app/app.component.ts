@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
   <div class="container-wrapper">
     <h1 class="text-center heading-custom" style="color: #fff;">Airmes</h1>
       <div class="container-fluid">
+        <indicators-section></indicators-section>
         <charts-section></charts-section>
       </div>
   </div>

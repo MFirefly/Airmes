@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 
-// webpack html imports
-
 @Component({
   selector: 'charts-section',
   template: `
@@ -10,7 +8,6 @@ import { Component } from '@angular/core';
       <div class="card mb-3">
         <chart-section [ts]="desc.temperatureChart.ts"
                        [html]="desc.temperatureChart.html"
-                      
                        [id]="desc.temperatureChart.id"
                        [heading]="desc.temperatureChart.heading">
           <temperature-chart></temperature-chart>
@@ -21,7 +18,6 @@ import { Component } from '@angular/core';
       <div class="card mb-3">
       <chart-section [ts]="desc.humidityChart.ts"
                      [html]="desc.humidityChart.html"
-                    
                      [id]="desc.humidityChart.id"
                      [heading]="desc.humidityChart.heading">
         <humidity-chart></humidity-chart>
