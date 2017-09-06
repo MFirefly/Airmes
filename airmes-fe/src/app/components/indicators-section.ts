@@ -4,6 +4,7 @@ import { Component } from '@angular/core';
     selector: 'indicators-section',
     template: `
     <div class="row">
+        <div class="col-lg-2"></div>
         <div class="col-lg-2">
             <div class="card mb-3">
                 <indicator-section [heading]="desc.temperatureIndicator.heading"

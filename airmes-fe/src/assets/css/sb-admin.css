@@ -15,11 +15,6 @@ body.sticky-footer {
 body.fixed-nav {
   padding-top: 56px; }
 
-.heading-custom {
-  color: #fff;
-  padding: 30px;
-}
-
 .content-wrapper {
   min-height: calc(100vh - 56px);
   padding-top: 1rem; }
@@ -354,3 +349,15 @@ footer.sticky-footer {
 @media (min-width: 992px) {
   body.sidenav-toggled footer.sticky-footer {
     width: calc(100% - 55px); } }
+
+/* Custom*/
+.heading-custom {
+  color: #fff;
+  padding: 30px;
+}
+
+.indicator-text {
+  padding: 20px;
+  text-align: center;
+  font-size: 3rem;
+}
