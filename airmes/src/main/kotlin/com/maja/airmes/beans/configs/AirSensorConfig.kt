@@ -102,7 +102,7 @@ class AirSensorConfig {
 
         val humidity = combineBytes(byteArray[2], byteArray[3])
 
-        return NewSensorData(Timestamp(System.currentTimeMillis()), humidity / 10, temperature / 10)
+        return NewSensorData(Timestamp(System.currentTimeMillis()), humidity / 10, temperature / 10.0)
     }
 
     /**

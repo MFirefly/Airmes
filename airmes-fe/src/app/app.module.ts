@@ -1,43 +1,29 @@
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
 
-import { ChartsSectionComponent } from './components/charts-section';
-import { TemperatureChartComponent } from './components/temperature-chart';
-import { HumidityChartComponent } from './components/humidity-chart';
-import { ChartSectionComponent } from './components/chart-section.component';
+import { AppComponent } from './components/app.component';
 import { IndicatorsSectionComponent } from './components/indicators-section';
+import { IndicatorSectionComponent } from './components/indicator-section.component';
 import { TemperatureIndicatorComponent } from './components/temperature-indicator';
 import { HumidityIndicatorComponent } from './components/humidity-indicator';
-import { IndicatorSectionComponent } from './components/indicator-section.component';
 
-import { TabsModule, CollapseModule, BsDropdownModule } from 'ngx-bootstrap';
-import { ChartsModule } from 'ng2-charts';
+import { HttpModule } from '@angular/http';
 
-import { AppComponent } from './app.component';
+import { HumidityService } from './services/humidity.service'
 
 @NgModule({
-  bootstrap: [AppComponent],
   declarations: [
-    ChartSectionComponent,
     AppComponent,
-    ChartsSectionComponent,
-    TemperatureChartComponent,
-    HumidityChartComponent,
-    IndicatorSectionComponent,
     IndicatorsSectionComponent,
+    IndicatorSectionComponent,
     TemperatureIndicatorComponent,
     HumidityIndicatorComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule,
-    ChartsModule,
-    TabsModule.forRoot(),
-    CollapseModule.forRoot(),
-    BsDropdownModule.forRoot()
-  ]
+    HttpModule
+  ],
+  providers: [HumidityService],
+  bootstrap: [AppComponent]
 })
-
-export class AppModule {
-}
+export class AppModule { }

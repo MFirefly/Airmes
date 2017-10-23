@@ -19,17 +19,31 @@ class AirSensorEntity(
 
         private val timestamp: Timestamp,
 
-        private val temperature: Int,
+        private val temperature: Double,
 
         private val humidity: Int
 ) {
     @Suppress("unused")
-    private constructor() : this(timestamp = Timestamp(0), temperature = 0, humidity = 0)
+    private constructor() : this(timestamp = Timestamp(0), temperature = 0.0, humidity = 0)
 
     fun toDto(): AirSensorDto = AirSensorDto(
             id = this.id!!,
             time = this.timestamp,
             temperature = this.temperature,
+            humidity = this.humidity
+    )
+
+    fun toDtoTemperature(): AirSensorDto = AirSensorDto(
+            id = this.id!!,
+            time = this.timestamp,
+            temperature = this.temperature,
+            humidity = null
+    )
+
+    fun toDtoHumidity(): AirSensorDto = AirSensorDto(
+            id = this.id!!,
+            time = this.timestamp,
+            temperature = null,
             humidity = this.humidity
     )
 }

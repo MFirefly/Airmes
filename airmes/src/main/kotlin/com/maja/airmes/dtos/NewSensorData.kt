@@ -12,7 +12,7 @@ import java.sql.Timestamp
 class NewSensorData(
         private val time: Timestamp,
         private val humidity: Int,
-        private val temperature: Int
+        private val temperature: Double
 ) {
 
     override fun toString(): String = "NewSensorData=[time=${this.time}, humidity=${this.humidity}, " +

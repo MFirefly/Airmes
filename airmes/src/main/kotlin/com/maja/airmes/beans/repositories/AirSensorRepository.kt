@@ -16,8 +16,18 @@ import java.sql.Timestamp
 @Transactional
 interface AirSensorRepository : JpaRepository<AirSensorEntity, Long> {
 
+    /**
+     * Purges data older than specified timestamp
+     * @param timestamp data older than this timestamp will be purged from database
+     */
     @Modifying
     @Transactional(readOnly = false)
     @Query(value = "delete from AirSensorEntity a where a.timestamp < ?1")
     fun purgeData(timestamp: Timestamp)
+
+    /**
+     * Returns last entry from database
+     * @return Last entry from database
+     */
+    fun findFirstByOrderByIdDesc(): AirSensorEntity
 }

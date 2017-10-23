@@ -12,5 +12,5 @@ class AirSensorDto(
         val id: Long,
         val time: Timestamp,
         val humidity: Int?,
-        val temperature: Int?
+        val temperature: Double?
 )

@@ -22,11 +22,12 @@ class TempUtil {
             val random = Random()
             LOG.info("Creating new random data...")
 
+            // Humidity in percentage 0-100%
+            // Temperature in °C 5-40
             val randomData = NewSensorData(
                     Timestamp(System.currentTimeMillis()),
-                    random.nextInt(Short.MAX_VALUE - Short.MIN_VALUE) + Short.MIN_VALUE,
-                    random.nextInt(Short.MAX_VALUE - Short.MIN_VALUE) + Short.MIN_VALUE
-            )
+                    random.nextInt(100),
+                    random.nextDouble() * 35 + 5)
             LOG.info("Data: $randomData")
 
             return randomData
