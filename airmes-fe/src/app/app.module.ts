@@ -9,7 +9,8 @@ import { HumidityIndicatorComponent } from './components/humidity-indicator';
 
 import { HttpModule } from '@angular/http';
 
-import { HumidityService } from './services/humidity.service'
+import { HumidityService } from './services/humidity.service';
+import { TemperatureService } from './services/temperature.service';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,7 @@ import { HumidityService } from './services/humidity.service'
     BrowserModule,
     HttpModule
   ],
-  providers: [HumidityService],
+  providers: [HumidityService, TemperatureService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

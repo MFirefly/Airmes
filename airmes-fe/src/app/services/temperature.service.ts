@@ -6,13 +6,13 @@ import 'rxjs/add/operator/toPromise';
 import { Measurement } from '../interfaces/Measurement';
 
 @Injectable()
-export class HumidityService {
+export class TemperatureService {
 
     constructor(private http: Http) { }
 
-    getHumidity(): Promise<Measurement> {
+    getTemperature(): Promise<Measurement> {
         // Make the request
-        return this.http.get('http://localhost:8080/airmes/humidity/current')
+        return this.http.get('http://localhost:8080/airmes/temperature/current')
             .toPromise()
             .then(response => response.json().result as Measurement)
             .catch(this.handleError);

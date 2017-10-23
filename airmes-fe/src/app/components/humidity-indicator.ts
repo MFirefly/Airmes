@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HumidityService } from '../services/humidity.service'
 import { Measurement } from '../interfaces/Measurement';
 
