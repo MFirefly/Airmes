@@ -26,6 +26,11 @@ export class HumidityChartComponent implements OnInit{
         var humidities = this.getHumidities();
         this.options = {
             title: { text: '' },
+            yAxis: {
+                title: {
+                    text: '[%]'
+                }
+            },
             xAxis: {
                 categories: timestamps,
                 crosshair: false,
@@ -35,6 +40,7 @@ export class HumidityChartComponent implements OnInit{
                 }
             },
             series: [{
+                name: 'Humidity',
                 data: humidities
             }]
         };

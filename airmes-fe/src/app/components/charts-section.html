@@ -1,16 +1,16 @@
-<div class="row">
-    <div class="col-lg-6">
-      <div class="card mb-3">
-        <chart-section [heading]="desc.temperatureChart.heading">
-          <temperature-chart></temperature-chart>
-        </chart-section>
-      </div>
+<div class="column">
+  <div>
+    <div class="card mb-3">
+      <chart-section [heading]="desc.temperatureChart.heading">
+        <temperature-chart></temperature-chart>
+      </chart-section>
     </div>
-    <div class="col-lg-6">
-      <div class="card mb-3">
+  </div>
+  <div>
+    <div class="card mb-3">
       <chart-section [heading]="desc.humidityChart.heading">
         <humidity-chart></humidity-chart>
       </chart-section>
-      </div>
     </div>
   </div>
+</div>

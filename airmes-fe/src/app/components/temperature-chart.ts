@@ -25,6 +25,11 @@ export class TemperatureChartComponent implements OnInit {
         var temperatures = this.getTemperatures();
         this.options = {
             title: { text: '' },
+            yAxis: {
+                title: {
+                    text: '[°C]'
+                }
+            },
             xAxis: {
                 categories: timestamps,
                 crosshair: false,
@@ -34,6 +39,7 @@ export class TemperatureChartComponent implements OnInit {
                 }
             },
             series: [{
+                name: 'Temperature',
                 data: temperatures
             }]
         };

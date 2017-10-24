@@ -352,7 +352,7 @@ footer.sticky-footer {
 
 /* Custom*/
 .heading-custom {
-  color: #fff;
+  color: #ede9ce;
   padding: 30px;
 }
 
@@ -360,4 +360,21 @@ footer.sticky-footer {
   padding: 20px;
   text-align: center;
   font-size: 3rem;
+}
+
+.index-background {
+  background-color: #935347
+}
+
+.indicator-heading {
+  background-color: #64706c;
+  color: #ede9ce;
+}
+
+.indicator-custom-text {
+  background-color: #c7ad88;
+}
+
+.chart-display {
+  display: block;
 }
