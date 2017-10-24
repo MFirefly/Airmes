@@ -16,7 +16,6 @@ export class TemperatureChartComponent implements OnInit {
     ngOnInit(): void {
         this.temperatureService.getTemperatureHistory().then(result => {
             this.temperatureHistory = result;
-            console.log("Temperatures: " + this.temperatureHistory);
             this.showData();
         });
     }
@@ -25,13 +24,13 @@ export class TemperatureChartComponent implements OnInit {
         var timestamps = this.getTimestamps();
         var temperatures = this.getTemperatures();
         this.options = {
-            title: { text: 'Temperature chart' },
+            title: { text: '' },
             xAxis: {
                 categories: timestamps,
                 crosshair: false,
                 type: 'datetime',
                 labels: {
-                    format: '{value:%H:%M:%S}'
+                    format: '{value:%H:%M}'
                 }
             },
             series: [{

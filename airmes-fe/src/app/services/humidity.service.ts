@@ -10,6 +10,9 @@ export class HumidityService {
 
     constructor(private http: Http) { }
 
+    /**
+     * Retrieves current humidity from server
+     */
     getHumidity(): Promise<Measurement> {
         // Make the request
         return this.http.get('http://localhost:8080/airmes/humidity/current')
@@ -18,6 +21,20 @@ export class HumidityService {
             .catch(this.handleError);
     }
 
+    /**
+     * Retrieves humidity history from server
+     */
+    getHumidityHistory(): Promise<Measurement[]> {
+        return this.http.get('http://localhost:8080/airmes/humidity/history')
+        .toPromise()
+        .then(response => response.json().result as Measurement[])
+        .catch(this.handleError);
+    }
+
+    /**
+     * Error handles
+     * @param error Http error
+     */
     private handleError(error: any): Promise<any> {
         console.error(`Server returned code ${error.status}, body was: ${error.error}`);
         return Promise.reject(error.message || error);
