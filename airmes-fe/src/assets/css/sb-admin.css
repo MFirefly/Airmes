@@ -360,6 +360,8 @@ footer.sticky-footer {
   padding: 20px;
   text-align: center;
   font-size: 3rem;
+  background-color: #CAB597;
+  margin-bottom: 0px;
 }
 
 .index-background {
@@ -377,4 +379,10 @@ footer.sticky-footer {
 
 .chart-display {
   display: block;
+}
+
+.card-body {
+  padding-block-end: 1px;
+  padding: 0px;
+  padding-block-start: 1px;
 }
