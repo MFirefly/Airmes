@@ -25,7 +25,7 @@ class TempUtil {
             // Humidity in percentage 0-100%
             // Temperature in °C 5-40
             val randomData = NewSensorData(
-                    Timestamp(System.currentTimeMillis()),
+                    System.currentTimeMillis(),
                     random.nextInt(100),
                     random.nextDouble() * 35 + 5)
             LOG.info("Data: $randomData")

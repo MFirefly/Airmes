@@ -2,7 +2,7 @@ package com.maja.airmes.beans.services
 
 import com.maja.airmes.beans.repositories.AirSensorRepository
 import com.maja.airmes.beans.utils.TempUtil
-import com.maja.airmes.dtos.AirSensorDto
+import com.maja.airmes.beans.websocket.AirmesWebSocketEndpoint
 import com.maja.airmes.dtos.AirSensorListWrapper
 import com.maja.airmes.dtos.AirSensorWrapper
 import com.maja.airmes.dtos.NewSensorData
@@ -22,13 +22,15 @@ import java.sql.Timestamp
 @DependsOn("tempUtil")
 class AirSensorService(
         //        val sensorConfig: AirSensorConfig,
-        val airSensorRepo: AirSensorRepository
+        val airSensorRepo: AirSensorRepository,
+        val webSocketEndpoint: AirmesWebSocketEndpoint
 ) {
 
     private final val LOG = LoggerFactory.getLogger(AirSensorService::class.java)
 
     /**
      * Retrieves data from sensor and stores it into database every 1 minute
+     * Also sends new data to all open webSocket sessions
      */
     @Scheduled(fixedRate = GET_NEW_DATA_INTERVAL)
     fun retrieveSensorData() {
@@ -36,6 +38,8 @@ class AirSensorService(
         //val sensorData = sensorConfig.readSensor()
 
         val sensorData = TempUtil.readSensor()
+
+        webSocketEndpoint.sendNewDataToActiveSessions(sensorData)
 
         airSensorRepo.save(NewSensorData.fromDto(sensorData))
     }
