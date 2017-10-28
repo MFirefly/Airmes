@@ -15,7 +15,7 @@ export class TemperatureService {
      */
     getTemperature(): Promise<Measurement> {
         // Make the request
-        return this.http.get('http://localhost:8080/airmes/temperature/current')
+        return this.http.get('http://localhost:1410/airmes/temperature/current')
             .toPromise()
             .then(response => response.json().result as Measurement)
             .catch(this.handleError);
@@ -25,7 +25,7 @@ export class TemperatureService {
      * Retrieves temperature history from server
      */
     getTemperatureHistory(): Promise<Measurement[]> {
-        return this.http.get('http://localhost:8080/airmes/temperature/history')
+        return this.http.get('http://localhost:1410/airmes/temperature/history')
         .toPromise()
         .then(response => response.json().result as Measurement[])
         .catch(this.handleError);

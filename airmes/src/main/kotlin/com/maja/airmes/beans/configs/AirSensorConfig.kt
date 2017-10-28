@@ -45,7 +45,7 @@ class AirSensorConfig {
         Thread.sleep(AM2302_TIMEOUT_READ.toLong())
 
         /* Read out 8 bytes of result data:
-         * Byte 0: Should be Modbud function code 0x03
+         * Byte 0: Should be Modbus function code 0x03
          * Byte 1: Should be number of registers to read 0x04
          * Byte 2: Humidity MSB
          * Byte 3: Humidity LSB
@@ -54,16 +54,19 @@ class AirSensorConfig {
          * Byte 6: CRC LSB byte
          * Byte 7: CRC MSB byte
          */
-        val rawValues = ByteArray(8) //TODO test this!
+        val rawValues = ByteArray(8)
         i2cDevice.read(rawValues, 0, 8)
 
-//        OR: read one by one byte from specified registers
-//        val humidityMSB = i2cDevice.read(AM2302_REGISTER_HIGH_HUMIDITY)
-//        val humidityLSB = i2cDevice.read(AM2302_REGISTER_LOW_HUMIDITY)
-//        val temepratureMSB = i2cDevice.read(AM2302_REGISTER_HIGH_TEMPERATURE)
-//        val temepratureLSB = i2cDevice.read(AM2302_REGISTER_LOW_TEMPERATURE)
+        LOG.debug("---- Values retrieved from sensor: ----")
+        LOG.debug("Byte 0: " + rawValues[0])
+        LOG.debug("Byte 1: " + rawValues[1])
+        LOG.debug("Byte 2: " + rawValues[2])
+        LOG.debug("Byte 3: " + rawValues[3])
+        LOG.debug("Byte 4: " + rawValues[4])
+        LOG.debug("Byte 5: " + rawValues[5])
+        LOG.debug("Byte 6: " + rawValues[6])
+        LOG.debug("Byte 7: " + rawValues[7])
 
-        LOG.info("Data collected and converted!")
         return convertFromRawData(rawValues)
     }
 
@@ -75,7 +78,7 @@ class AirSensorConfig {
         try {
             i2cDevice.write(AM2302_COMMAND_WAKEUP.toByte())
         } catch (ex: IOException) {
-            LOG.warn("Waking up exception happened! Continuing as usual...")
+            LOG.debug("Waking up exception happened, continuing as usual...")
         }
     }
 
@@ -93,14 +96,21 @@ class AirSensorConfig {
      * @return Class with converted data
      */
     private fun convertFromRawData(byteArray: ByteArray): NewSensorData {
+        LOG.debug("Starting raw data conversion...")
         var temperature = combineBytes(byteArray[4], byteArray[5])
+        LOG.debug("Converted temperature: " + temperature)
 
-        if ((temperature and 0x8000.toShort()) > 0) {
+        if ((temperature and 0x008000.toShort()) > 0) {
             // Temperature is negative
-            temperature = (-(temperature and 0x7FFFF.toShort())).toShort()
+            LOG.debug("Temperature turned out negative.")
+            val res = temperature and 0x007FFF
+            LOG.debug("Temperature with sign removed: " + res)
+            temperature = (-res).toShort()
         }
+        LOG.debug("Final converted temperature: " + temperature)
 
         val humidity = combineBytes(byteArray[2], byteArray[3])
+        LOG.debug("Converted humidity: " + humidity)
 
         return NewSensorData(System.currentTimeMillis(), humidity / 10, temperature / 10.0)
     }
@@ -111,7 +121,14 @@ class AirSensorConfig {
      * @param lsb LSB of the data
      */
     private fun combineBytes(msb: Byte, lsb: Byte): Short {
-        return msb.shl(8) or lsb.toShort()
+        val first = msb * 256
+        LOG.debug("After shifting left MSB by 8: " + first)
+
+        val secondRemovedUpp = lsb.toShort() and 0x00FF
+
+        val second = first + secondRemovedUpp
+        LOG.debug("After OR shifted MSB and LSB: " + second)
+        return second.toShort()
     }
 
     /**
@@ -119,8 +136,8 @@ class AirSensorConfig {
      */
     companion object {
         // Constants dependant upon connection of the sensor to RPi
-        const val AM2302_ADDR = 0xB8 // or 0x5C
-        const val AM2302_I2CBUS = I2CBus.BUS_2
+        const val AM2302_ADDR = 0x5C // or 0xB8
+        const val AM2302_I2CBUS = I2CBus.BUS_1
 
         // Commands
         const val AM2302_COMMAND_WAKEUP = 0x00
@@ -150,8 +167,3 @@ class AirSensorConfig {
         const val AM2302_TIMEOUT_READ = 2
     }
 }
-
-/**
- * Added method for left shift for Byte type
- */
-infix inline fun Byte.shl(shift: Int): Short = (this.toInt() shl shift).toShort()

@@ -15,7 +15,7 @@ export class HumidityService {
      */
     getHumidity(): Promise<Measurement> {
         // Make the request
-        return this.http.get('http://localhost:8080/airmes/humidity/current')
+        return this.http.get('http://localhost:1410/airmes/humidity/current')
             .toPromise()
             .then(response => response.json().result as Measurement)
             .catch(this.handleError);
@@ -25,7 +25,7 @@ export class HumidityService {
      * Retrieves humidity history from server
      */
     getHumidityHistory(): Promise<Measurement[]> {
-        return this.http.get('http://localhost:8080/airmes/humidity/history')
+        return this.http.get('http://localhost:1410/airmes/humidity/history')
         .toPromise()
         .then(response => response.json().result as Measurement[])
         .catch(this.handleError);

@@ -1,5 +1,6 @@
 package com.maja.airmes.beans.services
 
+import com.maja.airmes.beans.configs.AirSensorConfig
 import com.maja.airmes.beans.repositories.AirSensorRepository
 import com.maja.airmes.beans.utils.TempUtil
 import com.maja.airmes.beans.websocket.AirmesWebSocketEndpoint
@@ -21,7 +22,7 @@ import java.sql.Timestamp
 @Service
 @DependsOn("tempUtil")
 class AirSensorService(
-        //        val sensorConfig: AirSensorConfig,
+        val sensorConfig: AirSensorConfig,
         val airSensorRepo: AirSensorRepository,
         val webSocketEndpoint: AirmesWebSocketEndpoint
 ) {
@@ -34,10 +35,12 @@ class AirSensorService(
      */
     @Scheduled(fixedRate = GET_NEW_DATA_INTERVAL)
     fun retrieveSensorData() {
-        // Replace random data with this, when sensor is connected and tested
-        //val sensorData = sensorConfig.readSensor()
+        // Real data from sensor
+        val sensorData = sensorConfig.readSensor()
+        LOG.debug("Data retrieved from sensor: " + sensorData)
 
-        val sensorData = TempUtil.readSensor()
+        // Dummy data
+//        val sensorData = TempUtil.readSensor()
 
         webSocketEndpoint.sendNewDataToActiveSessions(sensorData)
 
@@ -98,15 +101,13 @@ class AirSensorService(
      * Companion object that contains relevant constants
      */
     companion object {
-        // In seconds
-//        const val KEEP_DATA_INTERVAL = 259200L // 3 days
-        const val KEEP_DATA_INTERVAL = 7200 // 2 hours
+        // Defines how long the data will be stored in database (In seconds)
+        const val KEEP_DATA_INTERVAL = 259200L // 3 days
 
-        // In miliseconds
-//        const val PURGE_DATA_INTERVAL = 86400000L // 1 day
+        // Defines how frequently will old data be pruged from database (In milliseconds)
         const val PURGE_DATA_INTERVAL = 3600000L // 1 hour
 
-        // In miliseconds. Current 60000 ms = 1 minute
-        const val GET_NEW_DATA_INTERVAL = 60000L
+        // Defines how frequently will new data be read from the sensor. (In milliseconds)
+        const val GET_NEW_DATA_INTERVAL = 60000L // 1 minute
     }
 }
